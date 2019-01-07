@@ -1,0 +1,13 @@
+{
+  "name": "@nodenv/jetbrains-npm",
+  "version": "0.0.0",
+  "description": "Shim to fix JetBrains' npm integration",
+  "homepage": "https://github.com/nodenv/nodenv/wiki/FAQ#jetbrains-webstorm-integration-for-npm",
+  "license": "MIT",
+  "author": "Jason Karns <jason.karns@gmail.com> (http://jason.karns.name/)",
+  "keywords": [
+    "nodenv",
+    "jetbrains",
+    "npm"
+  ]
+}
