@@ -51,6 +51,21 @@ After installation:
 2. ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment
 
 
+### homebrew
+
+```sh
+brew tap nodenv/nodenv
+brew install jetbrains-npm
+```
+
+After installation, set the [Package Manager path](#Package-Manager) to the output of:
+
+```sh
+brew --prefix jetbrains-npm
+```
+
+And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
+
 ### global npm or yarn package
 
 ```sh
@@ -64,7 +79,6 @@ yarn global add @nodenv/jetbrains-npm
 ```
 
 After installation, set the [Package Manager path](#Package-Manager) to the output of:
-
 
 ```sh
 echo $(npm -g prefix)/lib/node_modules/@nodenv/jetbrains-npm
