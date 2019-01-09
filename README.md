@@ -78,6 +78,13 @@ echo $(yarn global dir)/node_modules/@nodenv/jetbrains-npm
 
 And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
 
+*__NOTE:__*
+Be aware which node is active when you install this package.
+Remember that global npm installs are still contained within the node version itself. (`$(nodenv prefix)/lib/node_modules/`)
+This means the package will be removed if you `nodenv uninstall` the particular node version.
+Therefore, it's recommended to install this package globally using a _system_ node, such that this package will live outside nodenv versions.
+Yarn, in contrast, defaults to installing global packages to a single shared global directory; outside the node version.
+
 ## Configuration
 
 ### Package Manager
