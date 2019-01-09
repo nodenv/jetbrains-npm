@@ -1,16 +1,19 @@
-# jetbrains-npm shim
+# jetbrains-npm proxy
 
 Fix IntelliJ/WebStorm's npm integration under nodenv
 
 ## Pre-requisites
 
-This shim assumes you have already selected nodenv's shim as your node runtime within your IDE's preferences:
+This proxy assumes you have already selected nodenv's shim as your node runtime within your IDE's preferences:
 
 ![image](https://user-images.githubusercontent.com/119972/50924357-5984e700-141d-11e9-90bc-8d63dcb26287.png)
 
 ## Installation
 
-### nodenv plugin
+### nodenv plugin (recommended)
+
+This installation method allows the proxy to find nodenv root automatically;
+the tradeoff being that IntelliJ/WebStorm must be explicitly configured with the proxy's location.
 
 ```sh
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/plugins/jetbrains-npm
@@ -24,16 +27,19 @@ echo "$(nodenv root)"/plugins/jetbrains-npm
 
 ### jetbrains-aware git clone
 
+This installation method enables JetBrains to find the npm proxy automatically, as it is relative to the node executable: `../lib/node_modules/npm/bin/npm-cli.js`; (relative to `shims/node`)
+the tradeoff requires ensuring the proxy can find your nodenv-root.
+
 ```sh
 mkdir -p "$(nodenv root)/lib/node_modules"
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/lib/node_modules/npm
 ```
 
-After installation, the IDE should automatically find the shim and include it in the list of available [package managers](#Package-Manager); just select it!
+After installation, the IDE should automatically find the proxy and include it in the list of available [package managers](#Package-Manager); just select it!
 
 ### standalone clone
 
-You may also choose to clone the shim to any location on disk that you like.
+You may also choose to clone the proxy to any location on disk that you like.
 
 ```sh
 # in whatever directory you like:
@@ -81,14 +87,14 @@ It may be detected by the IDE automatically, in which case you merely need to se
 Or you may need to paste in the full path manually.
 
 The package manager setting is found under: `Languages & Frameworks -> Node.js and NPM -> Package manager`.
-It should be set to the path where this shim was installed. (ie, the directory that _contains_ this shim's package.json file)
+It should be set to the path where this proxy was installed. (ie, the directory that _contains_ this proxy's package.json file)
 
 ![50924463-9f41af80-141d-11e9-8322-0456278c9bfd](https://user-images.githubusercontent.com/119972/50924683-47577880-141e-11e9-9438-e01bac8ad118.png)
 
 ### Nodenv Root
 
 If you use the default path of `~/.nodenv` as your nodenv root, you're all set;
-the shim should be able to derive your nodenv root location automatically.
+the proxy should be able to derive your nodenv root location automatically.
 
 If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is set accordingly and exported in IntelliJ/WebStorm's environment in one of the following ways:
     - set and export it in `~/.profile` or `~/.bash_profile`
@@ -97,3 +103,20 @@ If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is s
     - or modify the IDE desktop launcher to launch bash interactively
 
 (see https://youtrack.jetbrains.com/issue/IDEABKL-7589 for more details about JetBrains and environment variables)
+
+## Why is this necessary?
+
+IntelliJ/WebStorm, for its own reasons, does not directly execute the npm or yarn executable found in `PATH`.
+Instead, it attempts to find the npm/yarn _package directory_, and invoke node with the `bin/npm-cli.js` or `bin/yarn.js` script.
+([resolution logic](https://github.com/nodenv/nodenv/pull/129#discussion_r246391978))
+Of course, nodenv only resolves the true location of the node (or npm/yarn) executable at invocation time.
+This means JetBrains will never find the npm-cli.js or yarn.js scripts, since they do not exist relative to nodenv's node shim. (nor can they be found relative to nodenv's npm/yarn shims)
+
+## How it works
+
+This proxy conforms to the directory structure that JetBrains is hardcoded to find: the npm shim is at `bin/npm-cli.js`.
+Thus, IntelliJ/WebStorm can be configured to treat this proxy as the "package manager".
+The various installation options either support JetBrains' own lookup mechanisms such that JetBrains can find the proxy automatically, or allow the proxy to find nodenv-root automatically.
+
+When the proxy is invoked, it derives the nodenv-root (either by the proxy's own file location, or by the `nodenv root` command which relies on `NODENV_ROOT` and defaults to `~/.nodenv`).
+Then it proxies the invocation to nodenv's shim (found at `$(nodenv root)/shims/npm`); wherein nodenv can ensure the correct version of node+npm is activated according to `.node-version`, etc.
