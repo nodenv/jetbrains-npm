@@ -1,10 +1,15 @@
 {
   "name": "@nodenv/jetbrains-npm",
   "version": "0.0.0",
-  "description": "Shim to fix JetBrains' npm integration",
-  "homepage": "https://github.com/nodenv/nodenv/wiki/FAQ#jetbrains-webstorm-integration-for-npm",
+  "description": "Fix IntelliJ/WebStorm's npm integration under nodenv",
+  "homepage": "https://github.com/nodenv/jetbrains-npm",
   "license": "MIT",
   "author": "Jason Karns <jason.karns@gmail.com> (http://jason.karns.name/)",
+  "scripts": {
+    "postversion": "npm publish",
+    "prepublishOnly": "npm run publish:github",
+    "publish:github": "git push --follow-tags"
+  },
   "keywords": [
     "nodenv",
     "jetbrains",
