@@ -10,7 +10,8 @@ This proxy assumes you have already selected nodenv's shim as your node runtime 
 
 ## Installation
 
-### nodenv plugin (recommended if you have a custom nodenv root)
+### nodenv plugin
+__(recommended if you have a custom nodenv root)__
 
 This installation method allows the proxy to find nodenv root automatically;
 the tradeoff being that IntelliJ/WebStorm must be explicitly configured with the proxy's location.
@@ -25,7 +26,8 @@ After installation, set the [Package Manager path](#Package-Manager) to the outp
 echo "$(nodenv root)"/plugins/jetbrains-npm
 ```
 
-### jetbrains-aware git clone (recommended if your nodenv root is the default ~/.nodenv)
+### jetbrains-aware git clone
+__(recommended if your nodenv root is the default ~/.nodenv)__
 
 This installation method enables JetBrains to find the npm proxy automatically, as it is relative to the node executable: `../lib/node_modules/npm/bin/npm-cli.js`; (relative to `shims/node`)
 the tradeoff requires ensuring the proxy can find your nodenv-root.
