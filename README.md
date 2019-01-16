@@ -2,6 +2,23 @@
 
 Fix IntelliJ/WebStorm's npm integration under nodenv
 
+<!-- toc -->
+
+- [Pre-requisites](#pre-requisites)
+- [Installation](#installation)
+  * [nodenv plugin](#nodenv-plugin)
+  * [jetbrains-aware git clone](#jetbrains-aware-git-clone)
+  * [standalone clone](#standalone-clone)
+  * [homebrew](#homebrew)
+  * [global npm or yarn package](#global-npm-or-yarn-package)
+- [Configuration](#configuration)
+  * [Package Manager](#package-manager)
+  * [Nodenv Root](#nodenv-root)
+- [Why is this necessary?](#why-is-this-necessary)
+- [How it works](#how-it-works)
+
+<!-- tocstop -->
+
 ## Pre-requisites
 
 This proxy assumes you have already selected nodenv's shim as your node runtime within your IDE's preferences:
