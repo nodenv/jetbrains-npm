@@ -2,6 +2,8 @@
 
 Fix IntelliJ/WebStorm's npm integration under nodenv
 
+<!-- toc -->
+
 ## Pre-requisites
 
 This proxy assumes you have already selected nodenv's shim as your node runtime within your IDE's preferences:
