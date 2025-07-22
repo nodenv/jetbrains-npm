@@ -25,6 +25,9 @@
   "scripts": {
     "clean": "rm -rfv package*/ nodenv-jetbrains-npm-*.tgz",
     "start": "bin/npm-cli.js",
+    "test": "echo NEEDS TESTS",
+    "posttest": "npm run lint",
+    "lint": "echo NEEDS LINT",
     "postversion": "git push --follow-tags"
   },
   "keywords": [
