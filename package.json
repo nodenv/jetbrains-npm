@@ -5,7 +5,25 @@
   "homepage": "https://github.com/nodenv/jetbrains-npm",
   "license": "MIT",
   "author": "Jason Karns <jason.karns@gmail.com> (http://jason.karns.name/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodenv/jetbrains-npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodenv/jetbrains-npm/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "bin": "bin",
+    "test": "test"
+  },
+  "files": [
+    "bin"
+  ],
   "scripts": {
+    "clean": "git clean -fX",
     "postversion": "npm publish",
     "prepublishOnly": "npm run publish:github",
     "publish:github": "git push --follow-tags"
