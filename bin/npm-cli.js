@@ -4,7 +4,7 @@ var child_process = require("child_process");
 var fs = require("fs");
 var path = require("path");
 
-child_process.exec("nodenv root", function (err, stdout, stderr) {
+child_process.exec("nodenv root", function (err, stdout) {
   var npm;
 
   // get shim path from `nodenv root` (respects $NODENV_ROOT)
