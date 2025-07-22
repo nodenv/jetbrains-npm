@@ -1,4 +1,5 @@
 /node_modules
+/package*/
+/tmp
+
 /nodenv-jetbrains-npm-*.tgz
-/package-lock.json
-/yarn.lock
