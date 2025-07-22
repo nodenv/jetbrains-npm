@@ -38,7 +38,7 @@ the trade-off being that IntelliJ/WebStorm must be explicitly configured with th
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/plugins/jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 echo "$(nodenv root)"/plugins/jetbrains-npm
@@ -56,7 +56,7 @@ mkdir -p "$(nodenv root)/lib/node_modules"
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/lib/node_modules/npm
 ```
 
-After installation, the IDE should automatically find the proxy and include it in the list of available [package managers](#Package-Manager); just select it! (In fact, if the package manager field is empty before cloning, then a restart of WebStorm should select it automatically.)
+After installation, the IDE should automatically find the proxy and include it in the list of available [package managers](#package-manager); just select it! (In fact, if the package manager field is empty before cloning, then a restart of WebStorm should select it automatically.)
 
 ### standalone clone
 
@@ -69,8 +69,8 @@ git clone https://github.com/nodenv/jetbrains-npm
 
 After installation:
 
-1. set your [Package Manager path](#Package-Manager) as the path to your clone
-2. ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment
+1. set your [Package Manager path](#package-manager) as the path to your clone
+2. ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment
 
 ### Homebrew
 
@@ -79,13 +79,13 @@ brew tap nodenv/nodenv
 brew install jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 brew --prefix jetbrains-npm
 ```
 
-And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
+And finally, ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment.
 
 ### global npm or Yarn package
 
@@ -99,7 +99,7 @@ or
 yarn global add @nodenv/jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 echo $(npm -g prefix)/lib/node_modules/@nodenv/jetbrains-npm
@@ -111,7 +111,7 @@ or
 echo $(yarn global dir)/node_modules/@nodenv/jetbrains-npm
 ```
 
-And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
+And finally, ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment.
 
 _**NOTE:**_
 Be aware which node is active when you install this package.
@@ -145,7 +145,8 @@ If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is s
 - or always launch IntelliJ/WebStorm from a terminal
 - or modify the IDE desktop launcher to launch Bash interactively
 
-(see https://youtrack.jetbrains.com/issue/IDEABKL-7589 for more details about JetBrains and environment variables)
+(see [JetBrains issue](https://youtrack.jetbrains.com/issue/IDEABKL-7589) for
+more details about JetBrains and environment variables)
 
 ## Why is this necessary?
 
