@@ -26,6 +26,9 @@
     "lint": "echo NEEDS LINT",
     "postversion": "git push --follow-tags"
   },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
   "keywords": [
     "nodenv",
     "jetbrains",
