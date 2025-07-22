@@ -6,11 +6,10 @@ on:
   workflow_dispatch:
 
 permissions: {}
-
 jobs:
   test:
-    uses: nodenv/.github/.github/workflows/test.yml@v5
-    with: { npm: false, superlinter: false }
+    uses: nodenv/.github/.github/workflows/test.yml@v6
+    with: { npm: false }
     permissions:
       contents: read
       packages: read

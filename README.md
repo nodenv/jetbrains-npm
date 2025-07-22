@@ -6,14 +6,14 @@ Fix IntelliJ/WebStorm's npm integration under nodenv
 
 - [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
-  * [nodenv plugin](#nodenv-plugin)
-  * [jetbrains-aware git clone](#jetbrains-aware-git-clone)
-  * [standalone clone](#standalone-clone)
-  * [homebrew](#homebrew)
-  * [global npm or yarn package](#global-npm-or-yarn-package)
+  - [nodenv plugin](#nodenv-plugin)
+  - [JetBrains-aware Git clone](#jetbrains-aware-git-clone)
+  - [standalone clone](#standalone-clone)
+  - [Homebrew](#homebrew)
+  - [global npm or Yarn package](#global-npm-or-yarn-package)
 - [Configuration](#configuration)
-  * [Package Manager](#package-manager)
-  * [Nodenv Root](#nodenv-root)
+  - [Package Manager](#package-manager)
+  - [Nodenv Root](#nodenv-root)
 - [Why is this necessary?](#why-is-this-necessary)
 - [How it works](#how-it-works)
 
@@ -28,33 +28,35 @@ This proxy assumes you have already selected nodenv's shim as your node runtime 
 ## Installation
 
 ### nodenv plugin
-__(recommended if you have a custom nodenv root)__
+
+**(recommended if you have a custom nodenv root)**
 
 This installation method allows the proxy to find nodenv root automatically;
-the tradeoff being that IntelliJ/WebStorm must be explicitly configured with the proxy's location.
+the trade-off being that IntelliJ/WebStorm must be explicitly configured with the proxy's location.
 
 ```sh
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/plugins/jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 echo "$(nodenv root)"/plugins/jetbrains-npm
 ```
 
-### jetbrains-aware git clone
-__(recommended if your nodenv root is the default ~/.nodenv)__
+### JetBrains-aware Git clone
+
+**(recommended if your nodenv root is the default ~/.nodenv)**
 
 This installation method enables JetBrains to find the npm proxy automatically, as it is relative to the node executable: `../lib/node_modules/npm/bin/npm-cli.js`; (relative to `shims/node`)
-the tradeoff requires ensuring the proxy can find your nodenv-root.
+the trade-off requires ensuring the proxy can find your nodenv-root.
 
 ```sh
 mkdir -p "$(nodenv root)/lib/node_modules"
 git clone https://github.com/nodenv/jetbrains-npm "$(nodenv root)"/lib/node_modules/npm
 ```
 
-After installation, the IDE should automatically find the proxy and include it in the list of available [package managers](#Package-Manager); just select it! (In fact, if the package manager field is empty before cloning, then a restart of WebStorm should select it automatically.)
+After installation, the IDE should automatically find the proxy and include it in the list of available [package managers](#package-manager); just select it! (In fact, if the package manager field is empty before cloning, then a restart of WebStorm should select it automatically.)
 
 ### standalone clone
 
@@ -66,26 +68,26 @@ git clone https://github.com/nodenv/jetbrains-npm
 ```
 
 After installation:
-1. set your [Package Manager path](#Package-Manager) as the path to your clone
-2. ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment
 
+1. set your [Package Manager path](#package-manager) as the path to your clone
+2. ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment
 
-### homebrew
+### Homebrew
 
 ```sh
 brew tap nodenv/nodenv
 brew install jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 brew --prefix jetbrains-npm
 ```
 
-And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
+And finally, ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment.
 
-### global npm or yarn package
+### global npm or Yarn package
 
 ```sh
 npm -g install @nodenv/jetbrains-npm
@@ -97,7 +99,7 @@ or
 yarn global add @nodenv/jetbrains-npm
 ```
 
-After installation, set the [Package Manager path](#Package-Manager) to the output of:
+After installation, set the [Package Manager path](#package-manager) to the output of:
 
 ```sh
 echo $(npm -g prefix)/lib/node_modules/@nodenv/jetbrains-npm
@@ -109,9 +111,9 @@ or
 echo $(yarn global dir)/node_modules/@nodenv/jetbrains-npm
 ```
 
-And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
+And finally, ensure [`NODENV_ROOT`](#nodenv-root) is set in your IDE environment.
 
-*__NOTE:__*
+_**NOTE:**_
 Be aware which node is active when you install this package.
 Remember that global npm installs are still contained within the node version itself. (`$(nodenv prefix)/lib/node_modules/`)
 This means the package will be removed if you `nodenv uninstall` the particular node version.
@@ -137,20 +139,22 @@ If you use the default path of `~/.nodenv` as your nodenv root, you're all set;
 the proxy should be able to derive your nodenv root location automatically.
 
 If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is set accordingly and exported in IntelliJ/WebStorm's environment in one of the following ways:
-    - set and export it in `~/.profile` or `~/.bash_profile`
-    - or source `~/.bashrc` from `~/.profile` or `~/.bash_profile`
-    - or always launch IntelliJ/WebStorm from a terminal
-    - or modify the IDE desktop launcher to launch bash interactively
 
-(see https://youtrack.jetbrains.com/issue/IDEABKL-7589 for more details about JetBrains and environment variables)
+- set and export it in `~/.profile` or `~/.bash_profile`
+- or source `~/.bashrc` from `~/.profile` or `~/.bash_profile`
+- or always launch IntelliJ/WebStorm from a terminal
+- or modify the IDE desktop launcher to launch Bash interactively
+
+(see [JetBrains issue](https://youtrack.jetbrains.com/issue/IDEABKL-7589) for
+more details about JetBrains and environment variables)
 
 ## Why is this necessary?
 
-IntelliJ/WebStorm, for its own reasons, does not directly execute the npm or yarn executable found in `PATH`.
-Instead, it attempts to find the npm/yarn _package directory_, and invoke node with the `bin/npm-cli.js` or `bin/yarn.js` script.
+IntelliJ/WebStorm, for its own reasons, does not directly execute the npm or Yarn executable found in `PATH`.
+Instead, it attempts to find the npm/Yarn _package directory_, and invoke node with the `bin/npm-cli.js` or `bin/yarn.js` script.
 ([resolution logic](https://github.com/nodenv/nodenv/pull/129#discussion_r246391978))
-Of course, nodenv only resolves the true location of the node (or npm/yarn) executable at invocation time.
-This means JetBrains will never find the npm-cli.js or yarn.js scripts, since they do not exist relative to nodenv's node shim. (nor can they be found relative to nodenv's npm/yarn shims)
+Of course, nodenv only resolves the true location of the node (or npm/Yarn) executable at invocation time.
+This means JetBrains will never find the npm-cli.js or yarn.js scripts, since they do not exist relative to nodenv's node shim. (nor can they be found relative to nodenv's npm/Yarn shims)
 
 ## How it works
 
