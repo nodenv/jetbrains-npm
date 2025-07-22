@@ -2,6 +2,11 @@
 
 Fix IntelliJ/WebStorm's npm integration under nodenv
 
+[![Tests](https://img.shields.io/github/actions/workflow/status/nodenv/jetbrains-npm/test.yml?label=tests&logo=github)](https://github.com/nodenv/jetbrains-npm/actions/workflows/test.yml)
+[![Latest Homebrew Release](<https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnodenv%2Fhomebrew-nodenv%2Frefs%2Fheads%2Fmain%2FFormula%2Fjetbrains-npm.rb&label=homebrew-nodenv&search=archive%2Frefs%2Ftags%2Fv(%3F%3Cversion%3E%5Cd%2B.*).tar.gz&replace=v%24%3Cversion%3E&color=orange>)](https://github.com/nodenv/homebrew-nodenv/blob/main/Formula/jetbrains-npm.rb)
+[![Latest GitHub Release](https://img.shields.io/github/v/release/nodenv/jetbrains-npm?label=github&logo=github&sort=semver)](https://github.com/nodenv/jetbrains-npm/releases/latest)
+[![Latest npm Release](https://img.shields.io/npm/v/@nodenv/jetbrains-npm?logo=npm&logoColor=white)](https://www.npmjs.com/package/@nodenv/jetbrains-npm/v/latest)
+
 <!-- toc -->
 
 - [Pre-requisites](#pre-requisites)
