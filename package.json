@@ -15,10 +15,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "directories": {
-    "bin": "bin",
-    "test": "test"
-  },
   "files": [
     "bin"
   ],
