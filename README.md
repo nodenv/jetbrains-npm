@@ -6,14 +6,14 @@ Fix IntelliJ/WebStorm's npm integration under nodenv
 
 - [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
-  * [nodenv plugin](#nodenv-plugin)
-  * [jetbrains-aware git clone](#jetbrains-aware-git-clone)
-  * [standalone clone](#standalone-clone)
-  * [homebrew](#homebrew)
-  * [global npm or yarn package](#global-npm-or-yarn-package)
+  - [nodenv plugin](#nodenv-plugin)
+  - [jetbrains-aware git clone](#jetbrains-aware-git-clone)
+  - [standalone clone](#standalone-clone)
+  - [homebrew](#homebrew)
+  - [global npm or yarn package](#global-npm-or-yarn-package)
 - [Configuration](#configuration)
-  * [Package Manager](#package-manager)
-  * [Nodenv Root](#nodenv-root)
+  - [Package Manager](#package-manager)
+  - [Nodenv Root](#nodenv-root)
 - [Why is this necessary?](#why-is-this-necessary)
 - [How it works](#how-it-works)
 
@@ -28,7 +28,8 @@ This proxy assumes you have already selected nodenv's shim as your node runtime 
 ## Installation
 
 ### nodenv plugin
-__(recommended if you have a custom nodenv root)__
+
+**(recommended if you have a custom nodenv root)**
 
 This installation method allows the proxy to find nodenv root automatically;
 the tradeoff being that IntelliJ/WebStorm must be explicitly configured with the proxy's location.
@@ -44,7 +45,8 @@ echo "$(nodenv root)"/plugins/jetbrains-npm
 ```
 
 ### jetbrains-aware git clone
-__(recommended if your nodenv root is the default ~/.nodenv)__
+
+**(recommended if your nodenv root is the default ~/.nodenv)**
 
 This installation method enables JetBrains to find the npm proxy automatically, as it is relative to the node executable: `../lib/node_modules/npm/bin/npm-cli.js`; (relative to `shims/node`)
 the tradeoff requires ensuring the proxy can find your nodenv-root.
@@ -66,9 +68,9 @@ git clone https://github.com/nodenv/jetbrains-npm
 ```
 
 After installation:
+
 1. set your [Package Manager path](#Package-Manager) as the path to your clone
 2. ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment
-
 
 ### homebrew
 
@@ -111,7 +113,7 @@ echo $(yarn global dir)/node_modules/@nodenv/jetbrains-npm
 
 And finally, ensure [`NODENV_ROOT`](#Nodenv-Root) is set in your IDE environment.
 
-*__NOTE:__*
+_**NOTE:**_
 Be aware which node is active when you install this package.
 Remember that global npm installs are still contained within the node version itself. (`$(nodenv prefix)/lib/node_modules/`)
 This means the package will be removed if you `nodenv uninstall` the particular node version.
@@ -136,11 +138,7 @@ It should be set to the path where this proxy was installed. (ie, the directory 
 If you use the default path of `~/.nodenv` as your nodenv root, you're all set;
 the proxy should be able to derive your nodenv root location automatically.
 
-If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is set accordingly and exported in IntelliJ/WebStorm's environment in one of the following ways:
-    - set and export it in `~/.profile` or `~/.bash_profile`
-    - or source `~/.bashrc` from `~/.profile` or `~/.bash_profile`
-    - or always launch IntelliJ/WebStorm from a terminal
-    - or modify the IDE desktop launcher to launch bash interactively
+If you use a custom location for nodenv root, you must ensure `NODENV_ROOT` is set accordingly and exported in IntelliJ/WebStorm's environment in one of the following ways: - set and export it in `~/.profile` or `~/.bash_profile` - or source `~/.bashrc` from `~/.profile` or `~/.bash_profile` - or always launch IntelliJ/WebStorm from a terminal - or modify the IDE desktop launcher to launch bash interactively
 
 (see https://youtrack.jetbrains.com/issue/IDEABKL-7589 for more details about JetBrains and environment variables)
 
