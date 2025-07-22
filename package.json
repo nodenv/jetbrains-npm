@@ -23,7 +23,8 @@
     "bin"
   ],
   "scripts": {
-    "clean": "git clean -fX",
+    "clean": "rm -rfv package*/ nodenv-jetbrains-npm-*.tgz",
+    "start": "bin/npm-cli.js",
     "postversion": "npm publish",
     "prepublishOnly": "npm run publish:github",
     "publish:github": "git push --follow-tags"
