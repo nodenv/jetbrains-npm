@@ -19,11 +19,10 @@
     "bin"
   ],
   "scripts": {
-    "clean": "rm -rfv package*/ nodenv-jetbrains-npm-*.tgz",
     "start": "bin/npm-cli.js",
-    "test": "echo NEEDS TESTS",
+    "test": "bats ${CI:+--tap} test",
     "posttest": "npm run lint",
-    "lint": "echo NEEDS LINT",
+    "lint": "prettier --check .",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
