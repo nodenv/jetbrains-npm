@@ -1,6 +1,6 @@
 # jetbrains-npm proxy
 
-Fix IntelliJ/WebStorm's npm integration under nodenv
+Fix IntelliJ/WebStorm's npm integration under nodenv.
 
 [![Tests](https://img.shields.io/github/actions/workflow/status/nodenv/jetbrains-npm/test.yml?label=tests&logo=github)](https://github.com/nodenv/jetbrains-npm/actions/workflows/test.yml)
 [![Latest GitHub Release](https://img.shields.io/github/v/release/nodenv/jetbrains-npm?label=github&logo=github&sort=semver)](https://github.com/nodenv/jetbrains-npm/releases/latest)
