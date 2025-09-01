@@ -1,7 +1,7 @@
 {
   "name": "@nodenv/jetbrains-npm",
   "version": "1.0.2",
-  "description": "Fix IntelliJ/WebStorm's npm integration under nodenv",
+  "description": "Fix IntelliJ/WebStorm's npm integration under nodenv.",
   "homepage": "https://github.com/nodenv/jetbrains-npm",
   "license": "MIT",
   "author": "Jason Karns <jason.karns@gmail.com> (http://jason.karns.name/)",
