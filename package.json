@@ -1,6 +1,6 @@
 {
   "name": "@nodenv/jetbrains-npm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fix IntelliJ/WebStorm's npm integration under nodenv.",
   "homepage": "https://github.com/nodenv/jetbrains-npm",
   "license": "MIT",
